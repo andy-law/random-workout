@@ -1,0 +1,36 @@
+name: Merge PR to master
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
+jobs:
+  # code quality tasks
+  # publish github pages
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.1.0
+        with:
+          persist-credentials: false
+
+      - name: Uses Node.js 13.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '13.x'
+
+      - run: npm install -g yarn # Extra Step
+
+      - name: Install, Test and Build
+        run: |
+          yarn install
+          yarn build
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: build # The folder the action should deploy.
