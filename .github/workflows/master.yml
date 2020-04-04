@@ -1,4 +1,4 @@
-name: Merge PR to master
+name: Push to master
 on:
   push:
     branches:
