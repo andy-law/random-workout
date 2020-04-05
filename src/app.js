@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>Random strength routine creator</h1>
+        <h1>Generate a random strength routine</h1>
       </header>
       <div className="app-body">
         <p>What equipment do you have available to you?</p>
