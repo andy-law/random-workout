@@ -53,6 +53,7 @@ function App() {
               <li>Plank</li>
             </ul>
             <p>To generate a workout, simply select the equipment that you have available to you and click the "Generate Workout" button at the bottom</p>
+            <p>Aim to do 3-5 sets of the workout with 6-12 reps of each exercise unless otherwise specified.</p>
           </Panel>
         }
         {
