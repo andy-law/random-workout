@@ -16,7 +16,12 @@
 
 .app-body {
   flex: 1;
+  padding: 12px;
   margin-bottom: 66px;
+}
+
+.app-equipment {
+  margin: 6px 0 12px;
 }
 
 .app-footer {

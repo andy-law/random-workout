@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Panel, PanelGroup, Button, Checkbox, CheckboxGroup} from 'rsuite';
+import {Panel, PanelGroup, Button, TagPicker} from 'rsuite';
 
 import { getWorkouts } from './utils/workouts';
 import { getEquipment } from './utils/equipment';
@@ -16,11 +16,10 @@ function App() {
   const generateWorkout = () => {
     const workouts = getWorkouts(availableEquipment);
 
-    console.log({workouts});
     setExercises(workouts);
   }
 
-  const handleChange = (value) => {
+  const handleEquipmentChange = (value) => {
     setAvailableEquipment(value);
   }
   
@@ -30,34 +29,46 @@ function App() {
         <h1>Random strength routine creator</h1>
       </header>
       <div className="app-body">
-        <div className="app-equipment">
-          <CheckboxGroup
-            inline
-            name="checkboxList"
-            value={availableEquipment}
-            onChange={handleChange}
-          >
-            {
-              allEquipment.map(({label, value}) => (
-                <Checkbox key={value} value={value}>{label}</Checkbox>
-              ))
-            }
-          </CheckboxGroup>
-        </div>
+        <p>What equipment do you have available to you?</p>
+        <TagPicker
+          block
+          data={allEquipment}
+          defaultValue={availableEquipment}
+          className="app-equipment"
+          placeholder="What equipment do you have available to you?"
+          onChange={handleEquipmentChange}
+        />
+        {
+          (!exercises || !exercises.length) &&
+          <Panel header="" bordered>
+            <p>This app generates a workout for you, based loosely on the "Strength Training for Ultrarunning" episodes of <a href="https://jasonkoop.com/koopcast" target="_blank" rel="noreferrer noopener">Koopcast</a></p>
+            <p>A workout will contain exercises in the following categories:</p>
+            <ul>
+              <li>Push</li>
+              <li>Pull</li>
+              <li>Hinge</li>
+              <li>Squat</li>
+              <li>Carry</li>
+              <li>Lunge</li>
+              <li>Plank</li>
+            </ul>
+            <p>To generate a workout, simply select the equipment that you have available to you and click the "Generate Workout" button at the bottom</p>
+          </Panel>
+        }
         {
           !!exercises && !!exercises.length &&
-          <PanelGroup>
+          <PanelGroup bordered>
             {
-              exercises.map(({title, workout}) => (
-                <Panel key={title} header={`${title} - ${workout.title}`} collapsible bordered>
+              exercises.map(({title, workout}) => {
+               return !!workout ? <Panel key={title} header={`${title} - ${workout.title}`} collapsible bordered>
                   <p>{workout.instructions}</p>
                   <p>Equipment needed: {
                     workout.equipment.length 
                       ? workout.equipment.map((item) => allEquipment.find(({value}) => value === item).label).join(', ')
                       : 'None'
                   }</p>
-                </Panel>
-              ))
+                </Panel> : null
+              })
             }
           </PanelGroup>
         }
