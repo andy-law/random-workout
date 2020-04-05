@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import {Panel, Button, Checkbox, CheckboxGroup} from 'rsuite';
+import {Panel, PanelGroup, Button, Checkbox, CheckboxGroup} from 'rsuite';
 
 import { getWorkouts } from './utils/workouts';
 import { getEquipment } from './utils/equipment';
 
 import 'rsuite/dist/styles/rsuite-default.css';
-import './App.css';
+import './app.css';
 
 function App() {
   const allEquipment = getEquipment();
@@ -25,12 +25,12 @@ function App() {
   }
   
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="app">
+      <header className="app-header">
         <h1>Random strength routine creator</h1>
       </header>
-      <div className="App-body">
-        <div className="App-equipment">
+      <div className="app-body">
+        <div className="app-equipment">
           <CheckboxGroup
             inline
             name="checkboxList"
@@ -46,7 +46,7 @@ function App() {
         </div>
         {
           !!exercises && !!exercises.length &&
-          <>
+          <PanelGroup>
             {
               exercises.map(({title, workout}) => (
                 <Panel key={title} header={`${title} - ${workout.title}`} collapsible bordered>
@@ -59,10 +59,10 @@ function App() {
                 </Panel>
               ))
             }
-          </>
+          </PanelGroup>
         }
       </div>
-      <footer className="App-footer">
+      <footer className="app-footer">
         <Button onClick={generateWorkout}>Generate workout</Button> 
       </footer>
     </div>

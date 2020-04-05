@@ -24,8 +24,8 @@ const equipment = [
     value: 'barbells'
   },
   {
-    label: 'Medecine Ball',
-    value: 'medecine-ball'
+    label: 'Medicine Ball',
+    value: 'medicine-ball'
   }
 ];
 
