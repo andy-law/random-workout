@@ -4,6 +4,10 @@ const equipment = [
     value: 'balance-board'
   },
   {
+    label: 'Indo Board',
+    value: 'indo-board'
+  },
+  {
     label: 'Kettle Bells',
     value: 'kettle-bells'
   },
