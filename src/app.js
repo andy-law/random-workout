@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
-import {Panel, PanelGroup, Button, TagPicker} from 'rsuite';
+import {Panel, PanelGroup, Button, TagPicker, Icon, IconButton, ButtonToolbar} from 'rsuite';
 
 import { getWorkouts } from './utils/workouts';
 import { getEquipment } from './utils/equipment';
 
-import 'rsuite/dist/styles/rsuite-default.css';
+import VideoLightbox from './components/video-lightbox';
+
+import 'rsuite/dist/styles/rsuite-dark.css';
 import './app.css';
 
 function App() {
   const allEquipment = getEquipment();
   const [availableEquipment, setAvailableEquipment] = useState(allEquipment.map(e => e.value));
   const [exercises, setExercises] = useState([]);
+  const [videoId, setVideoId] = useState(null);
   
 
   const generateWorkout = () => {
@@ -21,6 +24,16 @@ function App() {
 
   const handleEquipmentChange = (value) => {
     setAvailableEquipment(value);
+  }
+
+  const handleVideoSelected = (videoId) => {
+    console.log('handleVideoSelected', videoId);
+    setVideoId(videoId);
+  }
+
+  const handleLightboxClose = () => {
+    console.log('handleLightboxClose');
+    setVideoId(null);
   }
   
   return (
@@ -61,14 +74,36 @@ function App() {
           <PanelGroup bordered>
             {
               exercises.map(({title, workout}) => {
-               return !!workout ? <Panel key={title} header={`${title} - ${workout.title}`} collapsible bordered>
-                  <p>{workout.instructions}</p>
-                  <p>Equipment needed: {
-                    workout.equipment.length 
-                      ? workout.equipment.map((item) => allEquipment.find(({value}) => value === item).label).join(', ')
-                      : 'None'
-                  }</p>
-                </Panel> : null
+                return !!workout 
+                  ? <Panel key={title} header={title} bordered>
+                    <h2 className='app-workout-title'>{workout.title}</h2>
+                    <p className='app-workout-equipment'>Equipment needed: {
+                      workout.equipment.length 
+                        ? workout.equipment.map((item) => allEquipment.find(({value}) => value === item).label).join(', ')
+                        : 'None'
+                    }</p>
+                    <ButtonToolbar>
+                      {
+                        !!workout.videoId && 
+                        <IconButton icon={<Icon icon='youtube-play' />} onClick={() => handleVideoSelected(workout.videoId)}>View Video</IconButton>
+                      }
+                      {
+                        !!workout.link &&
+                      <IconButton icon={<Icon icon='web' />} href={workout.link} target='_blank'>View Details</IconButton>
+                      }
+                    </ButtonToolbar>
+                    <div className='app-workout-details'>
+                      <div className='app-workout-instructions'>
+                        <h3 className='app-workout-instructions-heading'>Instructions:</h3>
+                        <p>{workout.instructions}</p>
+                      </div>
+                      {
+                        !!workout.image &&
+                        <img className='app-workout-img' src={workout.image} alt={workout.title} />
+                      }
+                    </div>
+                  </Panel>
+                  : null
               })
             }
           </PanelGroup>
@@ -77,6 +112,7 @@ function App() {
       <footer className="app-footer">
         <Button onClick={generateWorkout}>Generate workout</Button> 
       </footer>
+      <VideoLightbox videoId={videoId} onClose={handleLightboxClose} />
     </div>
   );
 }
