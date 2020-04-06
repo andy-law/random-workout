@@ -58,11 +58,12 @@ h1 {
   }
 
   .app-workout-instructions {
-    width: 80%;
+    width: calc(70% - 6px);
   }
 
   .app-workout-img {
-    width: auto;
+    width: calc(30% - 6px);
+    margin-left: 12px;
   }
 }
 
