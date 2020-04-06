@@ -41,14 +41,16 @@ const workouts = {
       instructions: 'Start in a seated position with your knees and feet flat on the floor and with your shoulder blades against a bench. Squeeze your glutes and core and lift hips up until your back is parallel to the floor, explains Gallucci. Hold for three seconds at the top, then lower back down to the start.',
       videoId: 'CJC4Qn2AAHo',
       image: 'https://yurielkaim.com/wp-content/uploads/2016/11/Barbell-Hip-Thrust.jpg',
-      link: 'https://www.shape.com/fitness/tips/glute-bridge-vs-hip-thrust'
+      link: 'https://www.shape.com/fitness/tips/glute-bridge-vs-hip-thrust',
+      equipment: []
     },
     {
       title: 'Glute bridge',
       instructions: 'Lie face up on the floor, with your knees bent and feet flat on the ground. Keep your arms at your side with your palms down. Lift your hips off the ground until your knees, hips and shoulders form a straight line. Squeeze those glutes hard and keep your abs drawn in so you don’t overextend your back during the exercise. Hold your bridged position for a couple of seconds before easing back down.',
       videoId: '_leI4qFfPVw',
       image: 'https://fitnessmedia.azureedge.net/media/3948/glute-bridge-a-b-1920-x-1080-compressed.jpg',
-      link: 'https://www.coachmag.co.uk/glute-exercises/2333/glute-bridge-how-to-do-it-benefits-and-variations'
+      link: 'https://www.coachmag.co.uk/glute-exercises/2333/glute-bridge-how-to-do-it-benefits-and-variations',
+      equipment: []
     }
   ],
   squat: [
@@ -239,7 +241,7 @@ const workouts = {
 export const getWorkouts = (availableEquipment) => {
   return Object.keys(workouts)
     .map((key) => {
-      const workoutList = workouts[key];
+      const workoutList = workouts[key] || [];
       const availableWorkouts = workoutList
         .filter(({equipment}) => equipment.length === 0 || equipment.filter((type) => availableEquipment.includes(type)).length)
       
