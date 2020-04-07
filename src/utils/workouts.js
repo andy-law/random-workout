@@ -1,10 +1,52 @@
 const workouts = {
   push: [
-    {title: 'Push ups', instructions: 'Lorem ipsum set dolor', image: '', link: '', equipment: []},
-    {title: 'Balance board push ups', instructions: 'Lorem ipsum set dolor', image: '', link: '', equipment: ['balance-board']},
-    {title: 'Side-to-side Moving push ups', instructions: 'Lorem ipsum set dolor', image: '', link: '', equipment: []},
-    {title: 'Pike push up', instructions: 'Lorem ipsum set dolor', image: '', link: '', equipment: []},
-    {title: 'Dumbell overhead press', instructions: 'Lorem ipsum set dolor', image: '', link: '', equipment: ['dumbells']},
+    {
+      title: 'Push ups', 
+      instructions: 'It\'s a pushup, innit. Doesn\'t everyone know how to do that?! If not follow the link',
+      videoId: '0pkjOk0EiAk',
+      image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/basic-pushup-0-1446644701.jpg',
+      link: 'https://www.menshealth.com/fitness/a26752486/perfect-push-up/',
+      equipment: []
+    },
+    {
+      title: 'Balance/indo board push ups', 
+      instructions: 'Helps with core strength by trying to keep upright, do push ups with your hands on the balance/indo board',
+      videoId: 'tL_R29OOZjA',
+      image: 'https://www.homegymexperts.co.uk/wp-content/uploads/2017/09/indo-board-2.jpg',
+      link: 'http://blog.indoboard.com/2018/01/26/fit-friday-indo-board-push-ups/',
+      equipment: ['balance-board', 'indo-board']},
+    {
+      title: 'Side-to-side Moving push ups', 
+      instructions: 'Walk hands and feet to one side before doing a press up and then walk them back to the other side before doing another',
+      videoId: 'yVLYzmmwEAo',
+      image: 'https://i.ytimg.com/vi/yVLYzmmwEAo/maxresdefault.jpg',
+      link: 'https://www.youtube.com/watch?v=yVLYzmmwEAo',
+      equipment: []
+    },
+    {
+      title: 'Pike push up', 
+      instructions: 'Place your hands on the ground shoulder width apart, with your bum in the air and feet on the ground, practitioners of Yoga may recognise this as the downward-facing dog position. Your arms should be overhead, slightly in-front of your face. Lower yourself under control, until the top of your head touches the ground. Hold for a second, then return to the start position.',
+      videoId: 'x7_I5SUAd00',
+      image: 'https://www.t-nation.com/system/publishing/article_assets/4285/original/Pike-Push-up.jpg?ts=1478633506',
+      link: 'https://www.menshealth.com/fitness/a20694810/pike-pushup/',
+      equipment: []
+    },
+    {
+      title: 'Dumbell overhead press', 
+      instructions: 'Stand upright and keep the back straight. Hold a dumbbell in each hand at the shoulders with an overhand grip. Thumbs should be on the inside and knuckles facing up. Raise the weights above the head in a controlled motion while exhaling. Pause at the top of the motion. Return the dumbbells to the shoulders while inhaling.',
+      videoId: 'B-aVuyhvLHU',
+      image: 'https://cdn2.coachmag.co.uk/sites/coachmag/files/styles/16x9_480/public/2017/01/dumbbell-overhead-press.jpg?itok=4nUAYf1G&timestamp=1484316073',
+      link: 'https://www.verywellfit.com/how-to-do-the-dumbbell-overhead-press-3498298',
+      equipment: ['dumbells']
+    },
+    {
+      title: 'Chest presses on exercise ball',
+      instructions: 'Lie on a ball or bench with the head and neck supported. Begin with the weights straight up over chest. Bend the elbows and lower arms no lower than shoulders, wrists straight. Lift back to start and repeat.',
+      videoId: 'biX0qu4teJk',
+      image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/swiss-ball-db-bench-press-1446564601.jpg?resize=480:*',
+      link: 'https://www.womenshealthmag.com/fitness/a20697461/stability-ball-chest-press/',
+      equipment: ['exercise-ball', 'dumbells']
+    }
   ],
   pull: [
     {title: 'Dumbell rows', instructions: 'Lorem ipsum set dolor', image: '', link: '', equipment: ['dumbells']},

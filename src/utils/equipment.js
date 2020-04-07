@@ -30,6 +30,10 @@ const equipment = [
   {
     label: 'Medicine Ball',
     value: 'medicine-ball'
+  },
+  {
+    label: 'Exercise Ball',
+    value: 'exercise-ball'
   }
 ];
 
