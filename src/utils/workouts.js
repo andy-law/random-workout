@@ -49,9 +49,30 @@ const workouts = {
     }
   ],
   pull: [
-    {title: 'Dumbell rows', instructions: 'Lorem ipsum set dolor', image: '', link: '', equipment: ['dumbells']},
-    {title: 'Pull ups', instructions: 'Lorem ipsum set dolor', image: '', link: '', equipment: ['pull-up-bar']},
-    {title: 'Dumbell curls', instructions: 'Lorem ipsum set dolor', image: '', link: '', equipment: ['dumbells']},
+    {
+      title: 'Dumbell rows',
+      instructions: 'Stand with feet shoulder-width apart and hold a dumbbell in each hand. Bend the knees slightly and bend over at the waist with your back straight. Let dumbbells hang in front of the body with arms fully extended.',
+      videoId: 'LktGPg-AkvY',
+      image: 'https://cdn.muscleandstrength.com/sites/default/files/bent-over-dumbbell-row-1.jpg',
+      link: 'https://www.msn.com/en-us/health/exercise/strength/dumbbell-row/ss-BBtOh8f',
+      equipment: ['dumbells']
+    },
+    {
+      title: 'Pull ups',
+      instructions: 'Leap up and grip the bar with your hands shoulder width apart and your palms facing away from you. Hang with your arms fully extended, you can bend your legs at the knee if they’re dragging on the ground. Keep your shoulders back and your core engaged throughout. Then pull up. Focus on enlisting every upper body muscle to aid your upward endeavours. Move slowly upward until your chin is above the bar, then equally slowly downward until your arms are extended again.',
+      videoId: 'jFmCrA6fo78',
+      image: 'https://www.climbing.com/.image/t_share/MTM3MzI0NDMzMjY5MzM1MjA5/trainingperfectpullupsjpg.jpg',
+      link: 'https://www.coachmag.co.uk/exercises/full-body-workouts/2534/10-pull-variations',
+      equipment: ['pull-up-bar']
+    },
+    {
+      title: 'Dumbell curls',
+      instructions: 'Stand holding a dumbbell in each hand with your arms hanging by your sides. Ensure your elbows are close to your torso and your palms facing forward. Keeping your upper arms stationary, exhale as you curl the weights up to shoulder level while contracting your biceps.',
+      videoId: 'ykJmrZ5v0Oo',
+      image: 'https://cdn2.coachmag.co.uk/sites/coachmag/files/styles/16x9_480/public/2016/04/dumbbells-countdown-home-workout-biceps-curl.jpg?itok=CO8-Clp0&timestamp=1460984825',
+      link: 'https://www.menshealth.com/uk/building-muscle/a748583/dumbbell-bicep-curls/',
+      equipment: ['dumbells']
+    },
   ],
   hinge: [
     {
