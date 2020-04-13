@@ -13,7 +13,7 @@ import CompletedWorkout from './components/completed-workout';
 import 'rsuite/dist/styles/rsuite-dark.css';
 import './app.css';
 
-const clientId = 0;
+const clientId = 9440;
 
 function App() {
   const allEquipment = getEquipment();
@@ -71,6 +71,7 @@ function App() {
     const savedWorkout = getWorkout();
     console.log({savedWorkout});
 
+    //TODO: move to helper, and pass in client id and 
     if (savedWorkout) {
       const urlObj = new URL(location.href);
       const code = urlObj.searchParams.get('code');
@@ -81,7 +82,7 @@ function App() {
         grant_type: 'authorization_code'
       };
       fetch(
-        `https://www.strava.com/oauth/token?client_id=${clientId}&client_secret=2e414686c3cbb937543027b6a63887234179008c&code=${code}&grant_type=authorization_code`,
+        `https://www.strava.com/oauth/token?client_id=${clientId}&code=${code}&grant_type=authorization_code`,
         {
           method: 'POST',
           body: JSON.stringify(body),
