@@ -22,11 +22,10 @@ export const clearWorkout = () => {
 export const getStravaTokens = () => {
   const strava = localStorage.getItem(STRAVA_KEY);
 
-  return !!strava ? JSON.parse(strava) : null; 
+  return !!strava ? JSON.parse(strava) : null;
 };
 
 export const setStravaTokens = (tokens) => {
-  debugger;
   try {
     localStorage.setItem(STRAVA_KEY, JSON.stringify(tokens));
   } catch (err) {

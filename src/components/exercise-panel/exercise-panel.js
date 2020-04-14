@@ -1,0 +1,51 @@
+import React, { useState } from 'react';
+import {Panel, PanelGroup, Icon, IconButton, ButtonToolbar} from 'rsuite';
+
+import { getWorkoutEquipment } from '../../utils/workout-equipment';
+import VideoLightbox from '../video-lightbox';
+
+const ExercisePanel = ({exercises}) => {
+  const [videoId, setVideoId] = useState(null);
+
+  const handleVideoSelected = (videoId) => setVideoId(videoId);
+  const handleLightboxClose = () => setVideoId(null);
+
+  return <>
+    <PanelGroup bordered>
+      {
+        exercises.map(({title, workout}) => {
+          if (!workout) {
+            return null;
+          }
+          return <Panel key={title} header={title} bordered>
+            <h2 className='app-workout-title'>{workout.title}</h2>
+            <p className='app-workout-equipment'>Equipment needed: { getWorkoutEquipment(workout) }</p>
+            <ButtonToolbar>
+              {
+                !!workout.videoId &&
+                <IconButton icon={<Icon icon='youtube-play' />} onClick={() => handleVideoSelected(workout.videoId)}>View Video</IconButton>
+              }
+              {
+                !!workout.link &&
+              <IconButton icon={<Icon icon='web' />} href={workout.link} target='_blank'>View Details</IconButton>
+              }
+            </ButtonToolbar>
+            <div className='app-workout-details'>
+              <div className='app-workout-instructions'>
+                <h3 className='app-workout-instructions-heading'>Instructions:</h3>
+                <p>{workout.instructions}</p>
+              </div>
+              {
+                !!workout.image &&
+                <img className='app-workout-img' src={workout.image} alt={workout.title} />
+              }
+            </div>
+          </Panel>
+        })
+      }
+    </PanelGroup>
+    <VideoLightbox videoId={videoId} screenWidth={window.innerWidth} onClose={handleLightboxClose} />
+  </>
+};
+
+export default ExercisePanel;

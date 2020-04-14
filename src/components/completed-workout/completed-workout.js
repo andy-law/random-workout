@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Input, InputNumber, Button, Form } from 'rsuite';
 
-const CompletedWorkout = ({exercises, workoutTime}) => {
+const CompletedWorkout = ({exercises}) => {
   const [numSets, setNumSets] = useState(1);
 
-  // set number of sets 
+  // set number of sets
   // set number of reps/seconds for each exercise
-  // set number of 
+  // set number of
 
   const handleSetsChange = (value) => {
     setNumSets(parseInt(value, 10));
@@ -29,7 +29,7 @@ const CompletedWorkout = ({exercises, workoutTime}) => {
             <Input name={`${exercise}-details`} />
           </label>
         ))
-      } 
+      }
     </>
     <Button appearance="primary">Format Strava submission</Button>
   </Form>
