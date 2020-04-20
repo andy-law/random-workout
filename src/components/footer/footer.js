@@ -25,6 +25,7 @@ const AppFooter = ({
     handleResetApp();
   };
 
+  /* eslint-disable */
   useEffect(() => {
     const savedWorkout = getWorkout();
 
@@ -32,6 +33,7 @@ const AppFooter = ({
       setTimeFromSavedValues(savedWorkout.workoutTime);
     }
   }, []);
+  /* eslint-enable */
 
   return <footer className="footer">
     {

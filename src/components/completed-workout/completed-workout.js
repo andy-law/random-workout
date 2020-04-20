@@ -19,13 +19,10 @@ ${curr}`), `3 sets of:`)
 Workout generated with random workout generator - https://andy-law.github.io/random-workout/`
   });
 
-  console.log({workoutTime, exercises});
-
   const handleSubmit = () => {
     const hours = parseInt(formValues.duration.substring(0, 2), 10);
     const mins = parseInt(formValues.duration.substring(3, 5), 10);
     const secs = parseInt(formValues.duration.substring(6, 8), 10);
-    console.log({hours, mins, secs});
     const elapsedTime = secs + (mins * 60) + (hours * 60 * 60);
 
     onSubmit({

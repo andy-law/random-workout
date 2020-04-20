@@ -3,7 +3,7 @@ import { Modal } from 'rsuite';
 
 import { getWorkouts } from './utils/workouts';
 import { getEquipment } from './utils/equipment';
-import { setWorkout, getWorkout, clearWorkout } from './utils/local-storage';
+import { setWorkout, getWorkout, clearWorkout, setEquipment, getStorageEquipment } from './utils/local-storage';
 import useStrava from './hooks/useStrava';
 
 import CompletedWorkout from './components/completed-workout';
@@ -16,8 +16,9 @@ import 'rsuite/dist/styles/rsuite-dark.css';
 import './app.css';
 
 function App() {
-  const allEquipment = getEquipment();
-  const [availableEquipment, setAvailableEquipment] = useState(allEquipment.map(e => e.value));
+  const storageEquipment = getStorageEquipment();
+  const allEquipment = getEquipment().map(e => e.value);
+  const [availableEquipment, setAvailableEquipment] = useState(storageEquipment || allEquipment);
   const [exercises, setExercises] = useState([]);
   const [hasWorkout, setHasWorkout] = useState(false);
   const [hasStravaModal, setHasStravaModal] = useState(false);
@@ -69,6 +70,10 @@ function App() {
     }
   }, []);
   /* eslint-enable */
+
+  useEffect(() => {
+    setEquipment(availableEquipment);
+  }, [availableEquipment]);
 
   return (
     <div className="app">

@@ -1,5 +1,6 @@
 const WORKOUT_KEY = 'COMPLETE_WORKOUT';
 const STRAVA_KEY = 'STRAVA';
+const EQUIPMENT_KEY = 'EQUIPMENT';
 
 export const setWorkout = (exercises, workoutTime) => {
   try {
@@ -31,4 +32,18 @@ export const setStravaTokens = (tokens) => {
   } catch (err) {
     console.warn(`LocalStorage hasn't worked, ${err}`);
   }
+};
+
+export const setEquipment = (equipment) => {
+  try {
+    localStorage.setItem(EQUIPMENT_KEY, JSON.stringify(equipment));
+  } catch (err) {
+    console.warn(`LocalStorage hasn't worked, ${err}`);
+  }
+}
+
+export const getStorageEquipment = () => {
+  const equipment = localStorage.getItem(EQUIPMENT_KEY);
+
+  return !!equipment ? JSON.parse(equipment) : null;
 };

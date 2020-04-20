@@ -6,7 +6,6 @@ const useStrava = () => {
   const [stravaTokens, setTokens] = useState(getStravaTokens());
 
   const hasValidToken = () => {
-    console.log({stravaTokens});
     if (!stravaTokens.accessToken) {
       return;
     }
@@ -69,6 +68,7 @@ const useStrava = () => {
     ).then((response) => {
       response.json().then((data) => {
         console.log({data});
+        // TODO: Display success message and reset app
       })
     })
   }
