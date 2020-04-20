@@ -25,6 +25,9 @@ jobs:
       - run: npm install -g yarn # Extra Step
 
       - name: Install, Test and Build
+        env:
+          STRAVA_CLIENT_SECRET: ${{ secrets.stravaClientSecret }}
+          STRAVA_CLIENT_ID: ${{ secrets.stravaClientId }}
         run: |
           yarn install
           yarn test

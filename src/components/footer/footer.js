@@ -5,6 +5,8 @@ import useWorkoutTime from '../../hooks/useWorkoutTime';
 import { getWorkout } from '../../utils/local-storage';
 import Timer from '../timer';
 
+import './footer.css';
+
 const AppFooter = ({
   hasWorkout, handleResetApp, handleSendToStrava, handleGenerateWorkout
 }) => {
@@ -31,7 +33,7 @@ const AppFooter = ({
     }
   }, []);
 
-  return <footer className="app-footer">
+  return <footer className="footer">
     {
       !hasWorkout &&
       <Button appearance="primary" onClick={handleGenerateWorkout}>Generate workout</Button>

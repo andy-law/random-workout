@@ -1,0 +1,47 @@
+.exercise-workout-title {
+  font-size: 16px;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.exercise-workout-equipment {
+  margin-bottom: 12px;
+}
+
+.exercise-workout-details {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.exercise-workout-instructions,
+.exercise-workout-img {
+  width: 100%;
+  height: auto;
+}
+
+.exercise-workout-instructions {
+  margin-bottom: 12px;
+}
+
+.exercise-workout-instructions-heading {
+  font-size: 14px;
+  line-height: 1;
+  margin: 16px 0 4px;
+}
+
+@media all and (min-width: 768px) {
+  .exercise-workout-details {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .exercise-workout-instructions {
+    width: calc(70% - 6px);
+  }
+
+  .exercise-workout-img {
+    width: calc(30% - 6px);
+    margin-left: 12px;
+  }
+}

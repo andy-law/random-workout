@@ -4,6 +4,8 @@ import {Panel, PanelGroup, Icon, IconButton, ButtonToolbar} from 'rsuite';
 import { getWorkoutEquipment } from '../../utils/workout-equipment';
 import VideoLightbox from '../video-lightbox';
 
+import './exercise-panel.css'
+
 const ExercisePanel = ({exercises}) => {
   const [videoId, setVideoId] = useState(null);
 
@@ -18,8 +20,8 @@ const ExercisePanel = ({exercises}) => {
             return null;
           }
           return <Panel key={title} header={title} bordered>
-            <h2 className='app-workout-title'>{workout.title}</h2>
-            <p className='app-workout-equipment'>Equipment needed: { getWorkoutEquipment(workout) }</p>
+            <h2 className='exercise-workout-title'>{workout.title}</h2>
+            <p className='exercise-workout-equipment'>Equipment needed: { getWorkoutEquipment(workout) }</p>
             <ButtonToolbar>
               {
                 !!workout.videoId &&
@@ -30,14 +32,14 @@ const ExercisePanel = ({exercises}) => {
               <IconButton icon={<Icon icon='web' />} href={workout.link} target='_blank'>View Details</IconButton>
               }
             </ButtonToolbar>
-            <div className='app-workout-details'>
-              <div className='app-workout-instructions'>
-                <h3 className='app-workout-instructions-heading'>Instructions:</h3>
+            <div className='exercise-workout-details'>
+              <div className='exercise-workout-instructions'>
+                <h3 className='exercise-workout-instructions-heading'>Instructions:</h3>
                 <p>{workout.instructions}</p>
               </div>
               {
                 !!workout.image &&
-                <img className='app-workout-img' src={workout.image} alt={workout.title} />
+                <img className='exercise-workout-img' src={workout.image} alt={workout.title} />
               }
             </div>
           </Panel>

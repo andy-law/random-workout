@@ -4,6 +4,8 @@ import {TagPicker} from 'rsuite';
 import { getEquipment } from '../../utils/equipment';
 import { getExercisesEquipment } from '../../utils/workout-equipment';
 
+import './equipment.css';
+
 const Equipment = ({hasWorkout, exercises, availableEquipment, handleEquipmentChange}) => {
   const allEquipment = getEquipment();
 
@@ -20,7 +22,7 @@ const Equipment = ({hasWorkout, exercises, availableEquipment, handleEquipmentCh
         block
         data={allEquipment}
         defaultValue={availableEquipment}
-        className="app-equipment"
+        className="equipment-tagpicker"
         placeholder="What equipment do you have available to you?"
         onChange={handleEquipmentChange}
       />

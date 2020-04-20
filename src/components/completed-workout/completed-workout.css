@@ -1,0 +1,19 @@
+.workout-title {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.workout-question {
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.workout-input {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.workout-submit {
+  margin-top: 12px;
+}

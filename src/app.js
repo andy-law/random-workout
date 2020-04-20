@@ -3,7 +3,7 @@ import { Modal } from 'rsuite';
 
 import { getWorkouts } from './utils/workouts';
 import { getEquipment } from './utils/equipment';
-import { setWorkout, getWorkout, clearWorkout, getStravaTokens, setStravaTokens } from './utils/local-storage';
+import { setWorkout, getWorkout, clearWorkout } from './utils/local-storage';
 import useStrava from './hooks/useStrava';
 
 import CompletedWorkout from './components/completed-workout';
@@ -21,7 +21,11 @@ function App() {
   const [exercises, setExercises] = useState([]);
   const [hasWorkout, setHasWorkout] = useState(false);
   const [hasStravaModal, setHasStravaModal] = useState(false);
-  const { fetchTokens, requestAuth, hasValidToken } = useStrava();
+  const [workoutTime, setWorkoutTime] = useState({
+    start: Date.now(),
+    end: Date.now(),
+  });
+  const { fetchTokens, requestAuth, hasValidToken, postActivity } = useStrava();
 
   const handleResetApp = () => setExercises([]);
 
@@ -33,10 +37,15 @@ function App() {
 
   const handleEquipmentChange = (value) => setAvailableEquipment(value);
 
+  const handleSubmitToStrava = (values) => {
+    postActivity(values);
+  };
+
   const onCloseStravaModal = () => setHasStravaModal(false);
 
   const handleSendToStrava = (workoutTime) => {
     setWorkout(exercises, workoutTime);
+    setWorkoutTime(workoutTime);
     if (hasValidToken()) {
       setHasStravaModal(true);
     } else {
@@ -51,10 +60,10 @@ function App() {
   /* eslint-disable */
   useEffect(() => {
     const savedWorkout = getWorkout();
-
     if (savedWorkout) {
       fetchTokens();
       setExercises(savedWorkout.exercises);
+      setWorkoutTime(savedWorkout.workoutTime);
       setHasStravaModal(true);
       clearWorkout();
     }
@@ -72,14 +81,8 @@ function App() {
           availableEquipment={availableEquipment}
           handleEquipmentChange={handleEquipmentChange}
         />
-        {
-          !hasWorkout &&
-          <IntroPanel />
-        }
-        {
-          hasWorkout &&
-          <ExercisePanel exercises={exercises} />
-        }
+        { !hasWorkout && <IntroPanel /> }
+        { hasWorkout && <ExercisePanel exercises={exercises} /> }
       </div>
       <Footer
         hasWorkout={hasWorkout}
@@ -92,7 +95,7 @@ function App() {
         <Modal.Header>
           <Modal.Title>Workout details</Modal.Title>
         </Modal.Header>
-        <CompletedWorkout exercises={exercises} />
+        <CompletedWorkout exercises={exercises} workoutTime={workoutTime} onSubmit={handleSubmitToStrava} />
       </Modal>
     </div>
   );
