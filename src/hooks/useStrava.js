@@ -1,15 +1,24 @@
 import { useState } from 'react';
 import { getStravaTokens, setStravaTokens } from '../utils/local-storage';
 
+console.log('process.env', process.env);
+
 const useStrava = () => {
-  const clientId = process.env.STRAVA_CLIENT_ID;
+  const clientId = process.env.REACT_APP_STRAVA_CLIENT_ID;
   const [stravaTokens, setTokens] = useState(getStravaTokens());
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccessStatus, setSubmitSuccessStatus] = useState('');
+
+  const resetStravaStatus = () => {
+    setSubmitSuccessStatus('');
+  }
 
   const hasValidToken = () => {
     if (!stravaTokens.accessToken) {
       return;
     }
-    const hasExpired = new Date(stravaTokens.expiresAt).getTime() > Date.now();
+    const date = parseInt(`${stravaTokens.expiresAt}000`, 10);
+    const hasExpired = new Date(date).getTime() < Date.now();
 
     return !hasExpired;
   };
@@ -25,7 +34,7 @@ const useStrava = () => {
     }
     const urlObj = new URL(window.location.href);
     const code = urlObj.searchParams.get('code');
-    const clientSecret = process.env.STRAVA_CLIENT_SECRET;
+    const clientSecret = process.env.REACT_APP_STRAVA_CLIENT_SECRET;
     fetch(
       `https://www.strava.com/oauth/token?client_id=${clientId}&code=${code}&client_secret=${clientSecret}&grant_type=${grantType}`,
       { method: 'POST', }
@@ -51,6 +60,7 @@ const useStrava = () => {
   };
 
   const postActivity = (activity) => {
+    setIsSubmitting(true);
     const formData = new FormData();
     Object.keys(activity).forEach(key => formData.append(key, activity[key]));
 
@@ -68,8 +78,13 @@ const useStrava = () => {
     ).then((response) => {
       response.json().then((data) => {
         console.log({data});
-        // TODO: Display success message and reset app
+        setIsSubmitting(false);
+        setSubmitSuccessStatus('success');
+      }).catch(() => {
+        setSubmitSuccessStatus('error');
       })
+    }).catch(() => {
+      setSubmitSuccessStatus('error');
     })
   }
 
@@ -77,7 +92,10 @@ const useStrava = () => {
     hasValidToken,
     requestAuth: requestStravaAproval,
     fetchTokens: fetchStravaToken,
-    postActivity
+    postActivity,
+    isSubmitting,
+    submitSuccessStatus,
+    resetStravaStatus
   };
 };
 

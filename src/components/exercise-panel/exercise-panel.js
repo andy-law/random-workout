@@ -36,6 +36,7 @@ const ExercisePanel = ({exercises}) => {
               <div className='exercise-workout-instructions'>
                 <h3 className='exercise-workout-instructions-heading'>Instructions:</h3>
                 <p>{workout.instructions}</p>
+                <p>Target: {workout.target}</p>
               </div>
               {
                 !!workout.image &&

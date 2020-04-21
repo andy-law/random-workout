@@ -1,3 +1,7 @@
+.completed-form {
+  position: relative;
+}
+
 .workout-title {
   display: block;
   margin-bottom: 16px;
@@ -16,4 +20,16 @@
 
 .workout-submit {
   margin-top: 12px;
+}
+
+.workout-loader-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(40, 44, 52, 0.8);
 }

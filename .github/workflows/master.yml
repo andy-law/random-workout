@@ -26,8 +26,8 @@ jobs:
 
       - name: Install, Test and Build
         env:
-          STRAVA_CLIENT_SECRET: ${{ secrets.stravaClientSecret }}
-          STRAVA_CLIENT_ID: ${{ secrets.stravaClientId }}
+          REACT_APP_STRAVA_CLIENT_SECRET: ${{ secrets.stravaClientSecret }}
+          REACT_APP_STRAVA_CLIENT_ID: ${{ secrets.stravaClientId }}
         run: |
           yarn install
           yarn test

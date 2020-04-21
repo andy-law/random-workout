@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { Button, Form, FormGroup, FormControl, ControlLabel } from 'rsuite';
+import { Button, Form, FormGroup, FormControl, ControlLabel, Loader } from 'rsuite';
 
 import './completed-workout.css';
 
-const CompletedWorkout = ({exercises, workoutTime, onSubmit}) => {
+const CompletedWorkout = ({exercises, workoutTime, onSubmit, isSubmitting, submitStatus}) => {
   const duration = (workoutTime.end - workoutTime.start);
   const secs = Math.floor(duration * 0.001) % 60;
   const mins = Math.floor(duration / (1000 * 60)) % 60;
   const hours = Math.floor(duration / (1000 * 60 * 60)) % 60;
   const description = exercises
-  .map(({workout}) => workout.title)
+  .map(({workout}) => `${workout.title}, ${workout.target}`)
   .reduce((acc, curr) => (`${acc}
 ${curr}`), `3 sets of:`)
   const [formValues, setFormValues] = useState({
@@ -37,7 +37,7 @@ Workout generated with random workout generator - https://andy-law.github.io/ran
   const handleFormChange = (values) => setFormValues(values);
 
   return (
-    <Form fluid onSubmit={handleSubmit} onChange={handleFormChange} formValue={formValues}>
+    <Form className="completed-form" fluid onSubmit={handleSubmit} onChange={handleFormChange} formValue={formValues}>
       <FormGroup className="workout-title">
         <ControlLabel>Give your workout a title</ControlLabel>
         <FormControl name="workoutTitle" />
@@ -51,6 +51,24 @@ Workout generated with random workout generator - https://andy-law.github.io/ran
         <FormControl name="description" componentClass="textarea" />
       </FormGroup>
       <Button type="submit" className="workout-submit" appearance="primary">Send to Strava</Button>
+      {
+        !!isSubmitting &&
+        <div className="workout-loader-container">
+          <Loader size="md" />
+        </div>
+      }
+      {
+        submitStatus === 'success' &&
+        <div className="workout-loader-container">
+          <p>Successfully submitted to Strava</p>
+        </div>
+      }
+      {
+        submitStatus === 'error' &&
+        <div className="workout-loader-container">
+          <p>Unable to submit to Strava at the moment, please try again later</p>
+        </div>
+      }
     </Form>
   );
 };

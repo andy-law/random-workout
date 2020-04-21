@@ -3,7 +3,7 @@ import {Panel} from 'rsuite';
 
 const IntroPanel = () => (
   <Panel header="" bordered>
-    <p>This app generates a workout for you, based loosely on the "Strength Training for Ultrarunning" episodes of <a href="https://jasonkoop.com/koopcast" target="_blank" rel="noreferrer noopener">Koopcast</a></p>
+    <p>This app generates a workout for you, based loosely on the "Strength Training for Ultrarunning" episodes of <a href="https://jasonkoop.com/koopcast" target="_blank" rel="noreferrer noopener">Koopcast</a>, with the addition of Lunge and Plank exercises</p>
     <p>A workout will contain exercises in the following categories:</p>
     <ul>
       <li>Push</li>

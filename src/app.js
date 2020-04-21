@@ -26,7 +26,7 @@ function App() {
     start: Date.now(),
     end: Date.now(),
   });
-  const { fetchTokens, requestAuth, hasValidToken, postActivity } = useStrava();
+  const { fetchTokens, requestAuth, hasValidToken, postActivity, isSubmitting, submitSuccessStatus, resetStravaStatus } = useStrava();
 
   const handleResetApp = () => setExercises([]);
 
@@ -42,7 +42,9 @@ function App() {
     postActivity(values);
   };
 
-  const onCloseStravaModal = () => setHasStravaModal(false);
+  const onCloseStravaModal = () => {
+    setHasStravaModal(false)
+  };
 
   const handleSendToStrava = (workoutTime) => {
     setWorkout(exercises, workoutTime);
@@ -100,7 +102,13 @@ function App() {
         <Modal.Header>
           <Modal.Title>Workout details</Modal.Title>
         </Modal.Header>
-        <CompletedWorkout exercises={exercises} workoutTime={workoutTime} onSubmit={handleSubmitToStrava} />
+        <CompletedWorkout
+          exercises={exercises}
+          workoutTime={workoutTime}
+          onSubmit={handleSubmitToStrava}
+          isSubmitting={isSubmitting}
+          submitStatus={submitSuccessStatus}
+        />
       </Modal>
     </div>
   );
