@@ -43,7 +43,8 @@ function App() {
   };
 
   const onCloseStravaModal = () => {
-    setHasStravaModal(false)
+    setHasStravaModal(false);
+    resetStravaStatus();
   };
 
   const handleSendToStrava = (workoutTime) => {
