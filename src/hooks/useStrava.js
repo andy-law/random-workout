@@ -55,7 +55,7 @@ const useStrava = () => {
   };
 
   const requestStravaAproval = () => {
-    const redirectUri = window.location.origin;
+    const redirectUri = window.location.href;
     window.location.href = `https://www.strava.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&approval_prompt=auto&scope=activity:write`;
   };
 
