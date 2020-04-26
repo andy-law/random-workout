@@ -14,7 +14,7 @@ const useStrava = () => {
   }
 
   const hasValidToken = () => {
-    if (!stravaTokens.accessToken) {
+    if (!stravaTokens || !stravaTokens.accessToken) {
       return;
     }
     const date = parseInt(`${stravaTokens.expiresAt}000`, 10);
