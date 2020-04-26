@@ -25,7 +25,7 @@ const useStrava = () => {
 
   const fetchStravaToken = () => {
     let grantType = 'authorization_code';
-    if (stravaTokens.accessToken) {
+    if (stravaTokens && stravaTokens.accessToken) {
       if (hasValidToken()) {
         return;
       } else {
